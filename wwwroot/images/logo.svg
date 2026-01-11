@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50">
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- S4AI Icon - Abstract neural/strategy symbol -->
+  <g transform="translate(5, 5)">
+    <!-- Outer hexagon representing strategy -->
+    <path d="M20 2 L35 10 L35 26 L20 34 L5 26 L5 10 Z"
+          fill="none"
+          stroke="url(#logoGradient)"
+          stroke-width="2"/>
+
+    <!-- Inner connections representing AI/neural network -->
+    <circle cx="20" cy="18" r="4" fill="url(#logoGradient)"/>
+    <circle cx="12" cy="10" r="2.5" fill="url(#logoGradient)"/>
+    <circle cx="28" cy="10" r="2.5" fill="url(#logoGradient)"/>
+    <circle cx="12" cy="26" r="2.5" fill="url(#logoGradient)"/>
+    <circle cx="28" cy="26" r="2.5" fill="url(#logoGradient)"/>
+
+    <!-- Connection lines -->
+    <line x1="20" y1="18" x2="12" y2="10" stroke="url(#logoGradient)" stroke-width="1.5"/>
+    <line x1="20" y1="18" x2="28" y2="10" stroke="url(#logoGradient)" stroke-width="1.5"/>
+    <line x1="20" y1="18" x2="12" y2="26" stroke="url(#logoGradient)" stroke-width="1.5"/>
+    <line x1="20" y1="18" x2="28" y2="26" stroke="url(#logoGradient)" stroke-width="1.5"/>
+  </g>
+
+  <!-- Text -->
+  <text x="50" y="32" font-family="Inter, system-ui, sans-serif" font-size="22" font-weight="700" fill="currentColor">
+    <tspan>Strategies</tspan><tspan fill="url(#logoGradient)">4AI</tspan>
+  </text>
+</svg>

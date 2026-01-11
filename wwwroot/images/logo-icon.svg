@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- S4AI Icon - Abstract neural/strategy symbol -->
+  <g transform="translate(2, 2)">
+    <!-- Outer hexagon representing strategy -->
+    <path d="M18 0 L34 9 L34 27 L18 36 L2 27 L2 9 Z"
+          fill="none"
+          stroke="url(#iconGradient)"
+          stroke-width="2.5"/>
+
+    <!-- Inner connections representing AI/neural network -->
+    <circle cx="18" cy="18" r="5" fill="url(#iconGradient)"/>
+    <circle cx="9" cy="9" r="3" fill="url(#iconGradient)"/>
+    <circle cx="27" cy="9" r="3" fill="url(#iconGradient)"/>
+    <circle cx="9" cy="27" r="3" fill="url(#iconGradient)"/>
+    <circle cx="27" cy="27" r="3" fill="url(#iconGradient)"/>
+
+    <!-- Connection lines -->
+    <line x1="18" y1="18" x2="9" y2="9" stroke="url(#iconGradient)" stroke-width="2"/>
+    <line x1="18" y1="18" x2="27" y2="9" stroke="url(#iconGradient)" stroke-width="2"/>
+    <line x1="18" y1="18" x2="9" y2="27" stroke="url(#iconGradient)" stroke-width="2"/>
+    <line x1="18" y1="18" x2="27" y2="27" stroke="url(#iconGradient)" stroke-width="2"/>
+  </g>
+</svg>
