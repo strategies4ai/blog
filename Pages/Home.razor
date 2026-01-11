@@ -3,23 +3,38 @@
 <PageTitle>Strategies4AI - AI Strategies & Insights</PageTitle>
 
 <!-- Hero Section -->
-<section class="py-20 md:py-32">
-    <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+<section class="hero-gradient section">
+    <div class="container-wide">
+        <div class="max-w-4xl mx-auto text-center animate-fade-in">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Empowering businesses with AI strategies
+            </div>
+
+            <h1 class="mb-6">
                 AI Strategies for the
-                <span class="text-primary">Modern World</span>
+                <span class="gradient-text">Modern World</span>
             </h1>
-            <p class="text-xl text-muted-foreground mb-8">
+
+            <p class="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
                 Discover insights, strategies, and best practices for leveraging artificial intelligence
                 in your business and projects.
             </p>
+
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="/blog" class="btn btn-primary">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
                     Read the Blog
                 </a>
                 <a href="/about" class="btn btn-outline">
                     Learn More
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 </a>
             </div>
         </div>
@@ -27,46 +42,130 @@
 </section>
 
 <!-- Featured Posts Section -->
-<section class="py-16 bg-muted/50">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">Latest Insights</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+<section class="section section-alt">
+    <div class="container-wide">
+        <div class="text-center mb-12">
+            <h2 class="mb-4">Latest Insights</h2>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Stay ahead with our latest articles on AI strategy, implementation, and best practices.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             @foreach (var post in featuredPosts)
             {
-                <article class="card">
+                <article class="card card-hover group">
                     <div class="card-header">
-                        <div class="flex gap-2 mb-2">
+                        <div class="flex flex-wrap gap-2 mb-3">
                             @foreach (var tag in post.Tags)
                             {
                                 <span class="badge badge-secondary">@tag</span>
                             }
                         </div>
-                        <h3 class="card-title text-lg">@post.Title</h3>
-                        <p class="card-description">@post.Excerpt</p>
+                        <a href="@($"/blog/{post.Slug}")" class="block">
+                            <h3 class="card-title group-hover:text-primary transition-colors">@post.Title</h3>
+                        </a>
+                        <p class="card-description mt-2">@post.Excerpt</p>
                     </div>
                     <div class="card-footer justify-between">
                         <span class="text-sm text-muted-foreground">@post.Date.ToString("MMM dd, yyyy")</span>
-                        <a href="@($"/blog/{post.Slug}")" class="text-sm font-medium hover:underline">
-                            Read more &rarr;
+                        <a href="@($"/blog/{post.Slug}")" class="text-sm font-medium text-primary inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                            Read more
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
                         </a>
                     </div>
                 </article>
             }
         </div>
+
+        <div class="text-center mt-12">
+            <a href="/blog" class="btn btn-outline">
+                View All Articles
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section">
+    <div class="container-wide">
+        <div class="text-center mb-12">
+            <h2 class="mb-4">What We Cover</h2>
+            <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Comprehensive resources to help you navigate the AI landscape.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+            <div class="p-6 rounded-xl border border-border hover:border-primary/50 transition-colors group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">AI Strategy</h3>
+                <p class="text-muted-foreground text-sm">Build effective AI roadmaps for your organization.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border border-border hover:border-primary/50 transition-colors group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Technical Guides</h3>
+                <p class="text-muted-foreground text-sm">Deep dives into LLMs, neural networks, and more.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border border-border hover:border-primary/50 transition-colors group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Best Practices</h3>
+                <p class="text-muted-foreground text-sm">Ethics, safety, and responsible AI development.</p>
+            </div>
+
+            <div class="p-6 rounded-xl border border-border hover:border-primary/50 transition-colors group">
+                <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <svg class="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">Industry Insights</h3>
+                <p class="text-muted-foreground text-sm">How AI is transforming different sectors.</p>
+            </div>
+        </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-20">
-    <div class="container mx-auto px-4">
+<section class="section section-alt">
+    <div class="container-wide">
         <div class="max-w-2xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
-            <p class="text-muted-foreground mb-8">
-                Get the latest AI strategies and insights delivered to your inbox.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-                <input type="email" placeholder="Enter your email" class="input-field flex-1" />
-                <button class="btn btn-primary">Subscribe</button>
+            <div class="card p-8 md:p-12 glow">
+                <h2 class="mb-4">Stay Updated</h2>
+                <p class="text-muted-foreground mb-8 text-lg">
+                    Get the latest AI strategies and insights delivered to your inbox.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                    <input type="email" placeholder="Enter your email" class="input-field flex-1" />
+                    <button class="btn btn-primary whitespace-nowrap">
+                        Subscribe
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+                <p class="text-sm text-muted-foreground mt-4">
+                    No spam. Unsubscribe anytime.
+                </p>
             </div>
         </div>
     </div>
@@ -79,7 +178,7 @@
         {
             Title = "Getting Started with AI in Your Business",
             Slug = "getting-started-ai-business",
-            Excerpt = "Learn the fundamentals of implementing AI solutions in your organization.",
+            Excerpt = "Learn the fundamentals of implementing AI solutions in your organization and build a solid foundation for success.",
             Date = new DateTime(2024, 1, 15),
             Tags = new[] { "AI", "Business" }
         },
@@ -87,7 +186,7 @@
         {
             Title = "Understanding Large Language Models",
             Slug = "understanding-llms",
-            Excerpt = "A comprehensive guide to LLMs and how they're transforming industries.",
+            Excerpt = "A comprehensive guide to LLMs and how they're transforming industries across the globe.",
             Date = new DateTime(2024, 1, 10),
             Tags = new[] { "LLM", "Technology" }
         },
@@ -95,7 +194,7 @@
         {
             Title = "AI Ethics: Building Responsible Systems",
             Slug = "ai-ethics-responsible-systems",
-            Excerpt = "Best practices for developing ethical and responsible AI applications.",
+            Excerpt = "Best practices for developing ethical and responsible AI applications that benefit everyone.",
             Date = new DateTime(2024, 1, 5),
             Tags = new[] { "Ethics", "Best Practices" }
         }

@@ -2,41 +2,55 @@
 
 <PageTitle>Blog - Strategies4AI</PageTitle>
 
-<section class="py-12">
-    <div class="container mx-auto px-4">
+<section class="section hero-gradient">
+    <div class="container-wide">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl font-bold mb-4">Blog</h1>
-            <p class="text-xl text-muted-foreground mb-12">
-                Insights, tutorials, and thoughts on AI strategies and implementation.
-            </p>
+            <div class="text-center mb-12 animate-fade-in">
+                <span class="badge badge-default mb-4">Knowledge Hub</span>
+                <h1 class="mb-4">AI Insights & <span class="gradient-text">Strategies</span></h1>
+                <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                    Insights, tutorials, and thoughts on AI strategies and implementation.
+                </p>
+            </div>
 
-            <div class="space-y-8">
+            <div class="space-y-6">
                 @foreach (var post in blogPosts)
                 {
-                    <article class="card">
-                        <div class="card-header">
-                            <div class="flex gap-2 mb-2">
+                    <article class="card card-hover animate-slide-up">
+                        <div class="p-6">
+                            <div class="flex flex-wrap gap-2 mb-3">
                                 @foreach (var tag in post.Tags)
                                 {
                                     <span class="badge badge-secondary">@tag</span>
                                 }
                             </div>
-                            <a href="@($"/blog/{post.Slug}")" class="hover:underline">
-                                <h2 class="card-title">@post.Title</h2>
+                            <a href="@($"/blog/{post.Slug}")" class="group">
+                                <h2 class="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">@post.Title</h2>
                             </a>
-                            <p class="card-description">@post.Excerpt</p>
-                        </div>
-                        <div class="card-content">
-                            <div class="flex items-center gap-4 text-sm text-muted-foreground">
-                                <span>@post.Date.ToString("MMMM dd, yyyy")</span>
-                                <span class="separator-vertical h-4"></span>
-                                <span>@post.ReadTime min read</span>
+                            <p class="text-muted-foreground mb-4 line-clamp-2">@post.Excerpt</p>
+                            <div class="flex flex-wrap items-center justify-between gap-4">
+                                <div class="flex items-center gap-3 text-sm text-muted-foreground">
+                                    <span class="flex items-center gap-1.5">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        @post.Date.ToString("MMM dd, yyyy")
+                                    </span>
+                                    <span class="text-border">•</span>
+                                    <span class="flex items-center gap-1.5">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        @post.ReadTime min read
+                                    </span>
+                                </div>
+                                <a href="@($"/blog/{post.Slug}")" class="btn btn-ghost text-primary">
+                                    Read Article
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="@($"/blog/{post.Slug}")" class="btn btn-outline">
-                                Read Article &rarr;
-                            </a>
                         </div>
                     </article>
                 }

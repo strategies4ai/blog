@@ -1,75 +1,124 @@
 @inject NavigationManager Navigation
 
-<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-    <div class="container flex h-14 max-w-screen-2xl items-center mx-auto px-4">
-        <div class="mr-4 hidden md:flex">
-            <a class="mr-6 flex items-center gap-2" href="/">
-                <img src="images/logo-icon.svg" alt="" class="h-8 w-8" />
-                <span class="font-bold text-xl">Strategies<span class="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">4AI</span></span>
+<header class="sticky top-0 z-50 w-full border-b border-border/50 glass">
+    <div class="container-wide">
+        <div class="flex h-16 items-center justify-between">
+            <!-- Logo -->
+            <a class="flex items-center gap-3 group" href="/">
+                <img src="images/logo-icon.svg" alt="Strategies4AI" class="h-9 w-9 transition-transform group-hover:scale-105" />
+                <span class="font-bold text-xl hidden sm:block">
+                    Strategies<span class="gradient-text">4AI</span>
+                </span>
             </a>
-            <nav class="flex items-center gap-6 text-sm">
-                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/" Match="NavLinkMatch.All">
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center gap-1">
+                <NavLink class="nav-link" href="/" Match="NavLinkMatch.All">
                     Home
                 </NavLink>
-                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/blog">
+                <NavLink class="nav-link" href="/blog">
                     Blog
                 </NavLink>
-                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/about">
+                <NavLink class="nav-link" href="/about">
                     About
                 </NavLink>
             </nav>
-        </div>
 
-        <!-- Mobile menu button -->
-        <button class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 py-2 mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
-                @onclick="ToggleNavMenu"
-                type="button"
-                aria-label="Toggle Menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                @if (collapseNavMenu)
-                {
-                    <line x1="4" x2="20" y1="12" y2="12"></line>
-                    <line x1="4" x2="20" y1="6" y2="6"></line>
-                    <line x1="4" x2="20" y1="18" y2="18"></line>
-                }
-                else
-                {
-                    <line x1="18" x2="6" y1="6" y2="18"></line>
-                    <line x1="6" x2="18" y1="6" y2="18"></line>
-                }
-            </svg>
-        </button>
-
-        <a class="mr-6 flex items-center gap-2 md:hidden" href="/">
-            <img src="images/logo-icon.svg" alt="" class="h-7 w-7" />
-            <span class="font-bold text-lg">Strategies<span class="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">4AI</span></span>
-        </a>
-
-        <div class="flex flex-1 items-center justify-end space-x-2">
-            <nav class="flex items-center">
+            <!-- Right side actions -->
+            <div class="flex items-center gap-2">
                 <ThemeToggle />
-            </nav>
+
+                <!-- Mobile menu button -->
+                <button class="btn btn-ghost md:hidden p-2"
+                        @onclick="ToggleNavMenu"
+                        type="button"
+                        aria-label="Toggle Menu">
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        @if (collapseNavMenu)
+                        {
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        }
+                        else
+                        {
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        }
+                    </svg>
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Mobile menu -->
     @if (!collapseNavMenu)
     {
-        <div class="md:hidden border-t border-border">
-            <nav class="flex flex-col space-y-3 p-4">
-                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/" Match="NavLinkMatch.All" @onclick="ToggleNavMenu">
+        <div class="md:hidden border-t border-border/50 bg-background animate-fade-in">
+            <nav class="container-wide py-4 flex flex-col gap-1">
+                <NavLink class="mobile-nav-link" href="/" Match="NavLinkMatch.All" @onclick="ToggleNavMenu">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
                     Home
                 </NavLink>
-                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/blog" @onclick="ToggleNavMenu">
+                <NavLink class="mobile-nav-link" href="/blog" @onclick="ToggleNavMenu">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                    </svg>
                     Blog
                 </NavLink>
-                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/about" @onclick="ToggleNavMenu">
+                <NavLink class="mobile-nav-link" href="/about" @onclick="ToggleNavMenu">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
                     About
                 </NavLink>
             </nav>
         </div>
     }
 </header>
+
+<style>
+    .nav-link {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 0.9375rem;
+        font-weight: 500;
+        color: var(--color-muted-foreground);
+        transition: all 150ms ease;
+    }
+
+    .nav-link:hover {
+        color: var(--color-foreground);
+        background-color: var(--color-accent);
+    }
+
+    .nav-link.active {
+        color: var(--color-primary);
+        background-color: hsl(224 76% 48% / 0.1);
+    }
+
+    .mobile-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--color-muted-foreground);
+        transition: all 150ms ease;
+    }
+
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+        color: var(--color-foreground);
+        background-color: var(--color-accent);
+    }
+
+    .mobile-nav-link.active {
+        color: var(--color-primary);
+        background-color: hsl(224 76% 48% / 0.1);
+    }
+</style>
 
 @code {
     private bool collapseNavMenu = true;
