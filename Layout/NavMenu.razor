@@ -1,0 +1,79 @@
+@inject NavigationManager Navigation
+
+<header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container flex h-14 max-w-screen-2xl items-center mx-auto px-4">
+        <div class="mr-4 hidden md:flex">
+            <a class="mr-6 flex items-center space-x-2" href="/">
+                <span class="hidden font-bold sm:inline-block text-xl">Strategies4AI</span>
+            </a>
+            <nav class="flex items-center gap-6 text-sm">
+                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/" Match="NavLinkMatch.All">
+                    Home
+                </NavLink>
+                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/blog">
+                    Blog
+                </NavLink>
+                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/about">
+                    About
+                </NavLink>
+            </nav>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:text-accent-foreground h-9 py-2 mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
+                @onclick="ToggleNavMenu"
+                type="button"
+                aria-label="Toggle Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                @if (collapseNavMenu)
+                {
+                    <line x1="4" x2="20" y1="12" y2="12"></line>
+                    <line x1="4" x2="20" y1="6" y2="6"></line>
+                    <line x1="4" x2="20" y1="18" y2="18"></line>
+                }
+                else
+                {
+                    <line x1="18" x2="6" y1="6" y2="18"></line>
+                    <line x1="6" x2="18" y1="6" y2="18"></line>
+                }
+            </svg>
+        </button>
+
+        <a class="mr-6 flex items-center space-x-2 md:hidden" href="/">
+            <span class="font-bold text-lg">Strategies4AI</span>
+        </a>
+
+        <div class="flex flex-1 items-center justify-end space-x-2">
+            <nav class="flex items-center">
+                <ThemeToggle />
+            </nav>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    @if (!collapseNavMenu)
+    {
+        <div class="md:hidden border-t border-border">
+            <nav class="flex flex-col space-y-3 p-4">
+                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/" Match="NavLinkMatch.All" @onclick="ToggleNavMenu">
+                    Home
+                </NavLink>
+                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/blog" @onclick="ToggleNavMenu">
+                    Blog
+                </NavLink>
+                <NavLink class="transition-colors hover:text-foreground/80 text-foreground/60" href="/about" @onclick="ToggleNavMenu">
+                    About
+                </NavLink>
+            </nav>
+        </div>
+    }
+</header>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

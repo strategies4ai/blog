@@ -1,0 +1,98 @@
+@page "/blog"
+
+<PageTitle>Blog - Strategies4AI</PageTitle>
+
+<section class="py-12">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold mb-4">Blog</h1>
+            <p class="text-xl text-muted-foreground mb-12">
+                Insights, tutorials, and thoughts on AI strategies and implementation.
+            </p>
+
+            <div class="space-y-8">
+                @foreach (var post in blogPosts)
+                {
+                    <article class="card">
+                        <div class="card-header">
+                            <div class="flex gap-2 mb-2">
+                                @foreach (var tag in post.Tags)
+                                {
+                                    <span class="badge badge-secondary">@tag</span>
+                                }
+                            </div>
+                            <a href="@($"/blog/{post.Slug}")" class="hover:underline">
+                                <h2 class="card-title">@post.Title</h2>
+                            </a>
+                            <p class="card-description">@post.Excerpt</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                                <span>@post.Date.ToString("MMMM dd, yyyy")</span>
+                                <span class="separator-vertical h-4"></span>
+                                <span>@post.ReadTime min read</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="@($"/blog/{post.Slug}")" class="btn btn-outline">
+                                Read Article &rarr;
+                            </a>
+                        </div>
+                    </article>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private List<BlogPost> blogPosts = new()
+    {
+        new BlogPost
+        {
+            Title = "Getting Started with AI in Your Business",
+            Slug = "getting-started-ai-business",
+            Excerpt = "Learn the fundamentals of implementing AI solutions in your organization. We'll cover key considerations, common pitfalls, and best practices for a successful AI adoption journey.",
+            Date = new DateTime(2024, 1, 15),
+            Tags = new[] { "AI", "Business", "Strategy" },
+            ReadTime = 8
+        },
+        new BlogPost
+        {
+            Title = "Understanding Large Language Models",
+            Slug = "understanding-llms",
+            Excerpt = "A comprehensive guide to LLMs and how they're transforming industries. Discover the capabilities, limitations, and practical applications of modern language models.",
+            Date = new DateTime(2024, 1, 10),
+            Tags = new[] { "LLM", "Technology", "Deep Dive" },
+            ReadTime = 12
+        },
+        new BlogPost
+        {
+            Title = "AI Ethics: Building Responsible Systems",
+            Slug = "ai-ethics-responsible-systems",
+            Excerpt = "Best practices for developing ethical and responsible AI applications. Learn how to address bias, ensure transparency, and build trust with your AI systems.",
+            Date = new DateTime(2024, 1, 5),
+            Tags = new[] { "Ethics", "Best Practices" },
+            ReadTime = 10
+        },
+        new BlogPost
+        {
+            Title = "Prompt Engineering: A Practical Guide",
+            Slug = "prompt-engineering-guide",
+            Excerpt = "Master the art of prompt engineering to get better results from AI models. Includes techniques, examples, and templates you can use today.",
+            Date = new DateTime(2024, 1, 1),
+            Tags = new[] { "Prompts", "Tutorial" },
+            ReadTime = 15
+        }
+    };
+
+    private class BlogPost
+    {
+        public string Title { get; set; } = "";
+        public string Slug { get; set; } = "";
+        public string Excerpt { get; set; } = "";
+        public DateTime Date { get; set; }
+        public string[] Tags { get; set; } = Array.Empty<string>();
+        public int ReadTime { get; set; }
+    }
+}

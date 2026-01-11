@@ -1,0 +1,112 @@
+@page "/"
+
+<PageTitle>Strategies4AI - AI Strategies & Insights</PageTitle>
+
+<!-- Hero Section -->
+<section class="py-20 md:py-32">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-6">
+                AI Strategies for the
+                <span class="text-primary">Modern World</span>
+            </h1>
+            <p class="text-xl text-muted-foreground mb-8">
+                Discover insights, strategies, and best practices for leveraging artificial intelligence
+                in your business and projects.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/blog" class="btn btn-primary">
+                    Read the Blog
+                </a>
+                <a href="/about" class="btn btn-outline">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Posts Section -->
+<section class="py-16 bg-muted/50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">Latest Insights</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            @foreach (var post in featuredPosts)
+            {
+                <article class="card">
+                    <div class="card-header">
+                        <div class="flex gap-2 mb-2">
+                            @foreach (var tag in post.Tags)
+                            {
+                                <span class="badge badge-secondary">@tag</span>
+                            }
+                        </div>
+                        <h3 class="card-title text-lg">@post.Title</h3>
+                        <p class="card-description">@post.Excerpt</p>
+                    </div>
+                    <div class="card-footer justify-between">
+                        <span class="text-sm text-muted-foreground">@post.Date.ToString("MMM dd, yyyy")</span>
+                        <a href="@($"/blog/{post.Slug}")" class="text-sm font-medium hover:underline">
+                            Read more &rarr;
+                        </a>
+                    </div>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20">
+    <div class="container mx-auto px-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p class="text-muted-foreground mb-8">
+                Get the latest AI strategies and insights delivered to your inbox.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="input-field flex-1" />
+                <button class="btn btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private List<BlogPostPreview> featuredPosts = new()
+    {
+        new BlogPostPreview
+        {
+            Title = "Getting Started with AI in Your Business",
+            Slug = "getting-started-ai-business",
+            Excerpt = "Learn the fundamentals of implementing AI solutions in your organization.",
+            Date = new DateTime(2024, 1, 15),
+            Tags = new[] { "AI", "Business" }
+        },
+        new BlogPostPreview
+        {
+            Title = "Understanding Large Language Models",
+            Slug = "understanding-llms",
+            Excerpt = "A comprehensive guide to LLMs and how they're transforming industries.",
+            Date = new DateTime(2024, 1, 10),
+            Tags = new[] { "LLM", "Technology" }
+        },
+        new BlogPostPreview
+        {
+            Title = "AI Ethics: Building Responsible Systems",
+            Slug = "ai-ethics-responsible-systems",
+            Excerpt = "Best practices for developing ethical and responsible AI applications.",
+            Date = new DateTime(2024, 1, 5),
+            Tags = new[] { "Ethics", "Best Practices" }
+        }
+    };
+
+    private class BlogPostPreview
+    {
+        public string Title { get; set; } = "";
+        public string Slug { get; set; } = "";
+        public string Excerpt { get; set; } = "";
+        public DateTime Date { get; set; }
+        public string[] Tags { get; set; } = Array.Empty<string>();
+    }
+}

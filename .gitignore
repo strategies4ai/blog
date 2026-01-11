@@ -1,0 +1,28 @@
+# Build results
+bin/
+obj/
+release/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Node
+wwwroot/node_modules/
+
+# Build output
+wwwroot/css/app.css
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

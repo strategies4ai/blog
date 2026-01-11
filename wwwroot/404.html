@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Strategies4AI</title>
+    <script>
+        // Single Page App redirect for GitHub Pages
+        // This script redirects 404s to the index page with the path encoded in the query string
+        // The Blazor app then handles the routing
+        const path = window.location.pathname;
+        const search = window.location.search;
+        const hash = window.location.hash;
+
+        // Redirect to index with the original path
+        window.location.replace(
+            window.location.origin + '/?p=' + encodeURIComponent(path + search + hash)
+        );
+    </script>
+</head>
+<body>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/" />
+    </noscript>
+</body>
+</html>

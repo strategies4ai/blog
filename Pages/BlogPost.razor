@@ -1,0 +1,225 @@
+@page "/blog/{Slug}"
+
+<PageTitle>@post?.Title - Strategies4AI</PageTitle>
+
+<article class="py-12">
+    <div class="container mx-auto px-4">
+        <div class="max-w-3xl mx-auto">
+            @if (post != null)
+            {
+                <header class="mb-8">
+                    <a href="/blog" class="text-sm text-muted-foreground hover:text-foreground mb-4 inline-block">
+                        &larr; Back to Blog
+                    </a>
+                    <div class="flex gap-2 mb-4">
+                        @foreach (var tag in post.Tags)
+                        {
+                            <span class="badge badge-secondary">@tag</span>
+                        }
+                    </div>
+                    <h1 class="text-4xl font-bold mb-4">@post.Title</h1>
+                    <div class="flex items-center gap-4 text-muted-foreground">
+                        <span>@post.Date.ToString("MMMM dd, yyyy")</span>
+                        <span>@post.ReadTime min read</span>
+                    </div>
+                </header>
+
+                <div class="prose prose-lg max-w-none">
+                    @((MarkupString)post.Content)
+                </div>
+
+                <footer class="mt-12 pt-8 border-t border-border">
+                    <h3 class="text-lg font-semibold mb-4">Share this article</h3>
+                    <div class="flex gap-4">
+                        <a href="@($"https://twitter.com/intent/tweet?text={Uri.EscapeDataString(post.Title)}&url={Uri.EscapeDataString($"https://strategies4ai.com/blog/{Slug}")}")"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-outline">
+                            Share on X
+                        </a>
+                        <a href="@($"https://www.linkedin.com/sharing/share-offsite/?url={Uri.EscapeDataString($"https://strategies4ai.com/blog/{Slug}")}")"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn btn-outline">
+                            Share on LinkedIn
+                        </a>
+                    </div>
+                </footer>
+            }
+            else
+            {
+                <div class="text-center py-12">
+                    <h1 class="text-2xl font-bold mb-4">Post Not Found</h1>
+                    <p class="text-muted-foreground mb-8">The blog post you're looking for doesn't exist.</p>
+                    <a href="/blog" class="btn btn-primary">Back to Blog</a>
+                </div>
+            }
+        </div>
+    </div>
+</article>
+
+@code {
+    [Parameter]
+    public string Slug { get; set; } = "";
+
+    private BlogPostDetail? post;
+
+    protected override void OnParametersSet()
+    {
+        post = GetPost(Slug);
+    }
+
+    private BlogPostDetail? GetPost(string slug)
+    {
+        return posts.FirstOrDefault(p => p.Slug == slug);
+    }
+
+    private List<BlogPostDetail> posts = new()
+    {
+        new BlogPostDetail
+        {
+            Title = "Getting Started with AI in Your Business",
+            Slug = "getting-started-ai-business",
+            Date = new DateTime(2024, 1, 15),
+            Tags = new[] { "AI", "Business", "Strategy" },
+            ReadTime = 8,
+            Content = @"
+                <p class='text-lg text-muted-foreground mb-6'>
+                    Artificial Intelligence is no longer a futuristic concept—it's here, and it's transforming how businesses operate.
+                    Whether you're a startup or an established enterprise, understanding how to leverage AI can give you a significant competitive advantage.
+                </p>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Why AI Matters for Your Business</h2>
+                <p class='mb-4'>
+                    AI technologies can help automate repetitive tasks, uncover insights from data, improve customer experiences,
+                    and enable entirely new products and services. The key is knowing where to start.
+                </p>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Key Considerations</h2>
+                <ul class='list-disc list-inside space-y-2 mb-6'>
+                    <li>Start with a clear business problem, not the technology</li>
+                    <li>Ensure you have quality data to work with</li>
+                    <li>Build internal AI literacy across your organization</li>
+                    <li>Consider ethical implications from the start</li>
+                    <li>Start small, learn fast, and scale what works</li>
+                </ul>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Next Steps</h2>
+                <p class='mb-4'>
+                    Ready to begin your AI journey? Start by auditing your current processes to identify opportunities
+                    where AI could add value. Focus on areas with clear ROI potential and available data.
+                </p>
+            "
+        },
+        new BlogPostDetail
+        {
+            Title = "Understanding Large Language Models",
+            Slug = "understanding-llms",
+            Date = new DateTime(2024, 1, 10),
+            Tags = new[] { "LLM", "Technology", "Deep Dive" },
+            ReadTime = 12,
+            Content = @"
+                <p class='text-lg text-muted-foreground mb-6'>
+                    Large Language Models (LLMs) have revolutionized natural language processing and are powering
+                    a new generation of AI applications. Let's explore what they are and how they work.
+                </p>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>What are LLMs?</h2>
+                <p class='mb-4'>
+                    Large Language Models are neural networks trained on vast amounts of text data. They learn patterns
+                    in language that allow them to generate human-like text, answer questions, write code, and much more.
+                </p>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Key Capabilities</h2>
+                <ul class='list-disc list-inside space-y-2 mb-6'>
+                    <li>Natural language understanding and generation</li>
+                    <li>Code generation and explanation</li>
+                    <li>Translation and summarization</li>
+                    <li>Question answering and reasoning</li>
+                    <li>Creative writing and brainstorming</li>
+                </ul>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Limitations to Consider</h2>
+                <p class='mb-4'>
+                    While powerful, LLMs have limitations. They can hallucinate facts, may reflect biases in training data,
+                    and lack true understanding. Always validate important outputs and use them as tools, not oracles.
+                </p>
+            "
+        },
+        new BlogPostDetail
+        {
+            Title = "AI Ethics: Building Responsible Systems",
+            Slug = "ai-ethics-responsible-systems",
+            Date = new DateTime(2024, 1, 5),
+            Tags = new[] { "Ethics", "Best Practices" },
+            ReadTime = 10,
+            Content = @"
+                <p class='text-lg text-muted-foreground mb-6'>
+                    As AI systems become more prevalent, ensuring they're developed and deployed ethically
+                    is crucial. Here's how to build AI responsibly.
+                </p>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Core Principles</h2>
+                <ul class='list-disc list-inside space-y-2 mb-6'>
+                    <li><strong>Fairness:</strong> Ensure AI doesn't discriminate against protected groups</li>
+                    <li><strong>Transparency:</strong> Make AI decisions explainable where possible</li>
+                    <li><strong>Privacy:</strong> Protect user data and respect consent</li>
+                    <li><strong>Safety:</strong> Build systems that fail gracefully</li>
+                    <li><strong>Accountability:</strong> Maintain human oversight and responsibility</li>
+                </ul>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Practical Steps</h2>
+                <p class='mb-4'>
+                    Establish an AI ethics review process, audit your training data for biases,
+                    document model decisions, and create feedback mechanisms for users affected by AI decisions.
+                </p>
+            "
+        },
+        new BlogPostDetail
+        {
+            Title = "Prompt Engineering: A Practical Guide",
+            Slug = "prompt-engineering-guide",
+            Date = new DateTime(2024, 1, 1),
+            Tags = new[] { "Prompts", "Tutorial" },
+            ReadTime = 15,
+            Content = @"
+                <p class='text-lg text-muted-foreground mb-6'>
+                    Getting the best results from AI models requires skill in crafting effective prompts.
+                    This guide will help you master prompt engineering.
+                </p>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Prompt Engineering Basics</h2>
+                <p class='mb-4'>
+                    Prompt engineering is the practice of designing inputs that guide AI models to produce
+                    desired outputs. It's part art, part science, and entirely learnable.
+                </p>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Key Techniques</h2>
+                <ul class='list-disc list-inside space-y-2 mb-6'>
+                    <li>Be specific and provide context</li>
+                    <li>Use examples (few-shot learning)</li>
+                    <li>Break complex tasks into steps</li>
+                    <li>Specify the desired output format</li>
+                    <li>Iterate and refine based on results</li>
+                </ul>
+
+                <h2 class='text-2xl font-bold mt-8 mb-4'>Common Patterns</h2>
+                <p class='mb-4'>
+                    Role prompting (""Act as...""), chain-of-thought (""Think step by step""), and
+                    structured output (""Return JSON in this format..."") are powerful techniques
+                    that work across many models.
+                </p>
+            "
+        }
+    };
+
+    private class BlogPostDetail
+    {
+        public string Title { get; set; } = "";
+        public string Slug { get; set; } = "";
+        public DateTime Date { get; set; }
+        public string[] Tags { get; set; } = Array.Empty<string>();
+        public int ReadTime { get; set; }
+        public string Content { get; set; } = "";
+    }
+}
